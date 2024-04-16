@@ -1,7 +1,3 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,74 +6,56 @@
 <title>Blood Pressure Tracker</title>
 <link rel="stylesheet" href="styles.css">
 <script src="script.js" defer></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
+<h1>Blood Pressure Tracker</h1>
+<form id="bpForm">
+
+    <label for="time">Time:</label>
+    <input type="datetime-local" id="time" name="time" required><br><br>
+
     
-        <h1>Blood Pressure Tracker</h1>
-        <form id="bpForm">
-            <label for="time">Time:</label>
-            <input type="datetime-local" id="time" name="time" required><br><br>
-            
-            <label for="systolic">Systolic (mm Hg):</label>
-            <input type="number" id="systolic" name="systolic" required><br><br>
-            
-            <label for="diastolic">Diastolic (mm Hg):</label>
-            <input type="number" id="diastolic" name="diastolic" required><br><br>
-            
-            <label for="pulse">Pulse (bpm):</label>
-            <input type="number" id="pulse" name="pulse" required><br><br>
-            
-            <label for="hand">Hand (L/R):</label>
-            <select id="hand" name="hand" required>
-                <option value="L">Left</option>
-                <option value="R">Right</option>
-            </select><br><br>
-            
-            <label for="remarks">Remarks:</label><br>
-            <textarea id="remarks" name="remarks"></textarea><br><br>
-            
-            <button type="button" onclick="saveEntry()">Save Entry</button>
-            <button type="button" onclick="exportCSV()">Export CSV</button>
-            <button type="button" onclick="printTable()">Print as PDF</button>
-        </form>
-        
-        <h2>Entries</h2>
-        <table id="entryTable">
-            <thead>
-                <tr>
-                    <th>Time</th>
-                    <th>Systolic (mm Hg)</th>
-                    <th>Diastolic (mm Hg)</th>
-                    <th>Pulse (bpm)</th>
-                    <th>Hand (L/R)</th>
-                    <th>Remarks</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody id="entryBody">
-            </tbody>
-        </table>
-        
+    <label for="systolic">Systolic (mm Hg):</label>
+    <input type="number" id="systolic" name="systolic" placeholder="119" step="1" min="0" required><br><br>
+    
+    <label for="diastolic">Diastolic (mm Hg):</label>
+    <input type="number" id="diastolic" name="diastolic" placeholder="79" step="1" min="0" required><br><br>
+    
+    <label for="pulse">Pulse (bpm):</label>
+    <input type="number" id="pulse" name="pulse" placeholder="60" step="1" min="0" required><br><br>
+    
+    <label for="hand">Hand (L/R):</label>
+    <select id="hand" name="hand" required>
+        <option value="">Select hand</option>
+        <option value="L">Left</option>
+        <option value="R">Right</option>
+    </select><br><br>
+    
+    <label for="remarks">Remarks:</label><br>
+    <textarea id="remarks" name="remarks" maxlength="100"></textarea><br><br>
+    
+    <button type="button" onclick="saveEntry()">Save Entry</button>
+    <button type="button" onclick="exportCSV()">Export CSV</button>
+    <button type="button" onclick="printTable()">Print Table</button>
+</form>
+
+<h2>Entries</h2>
+<table id="entryTable">
+    <thead>
+        <tr>
+            <th>Time</th>
+            <th>Systolic (mm Hg)</th>
+            <th>Diastolic (mm Hg)</th>
+            <th>Pulse (bpm)</th>
+            <th>Hand (L/R)</th>
+            <th>Remarks</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody id="entryBody">
+    </tbody>
+</table>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

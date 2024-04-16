@@ -1,5 +1,26 @@
 // script.js
 
+// JavaScript code in script.js
+// JavaScript code in script.js
+window.addEventListener('DOMContentLoaded', (event) => {
+    // Get the current date and time
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = (now.getMonth() + 1).toString().padStart(2, '0');
+    var day = now.getDate().toString().padStart(2, '0');
+    var hours = now.getHours().toString().padStart(2, '0');
+    var minutes = now.getMinutes().toString().padStart(2, '0');
+
+    // Format the current date and time
+    var currentDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
+
+    // Set the value for the time input field
+    document.getElementById("time").value = currentDateTime;
+});
+
+
+
+
 function saveEntry() {
     var time = document.getElementById("time").value;
     var systolic = document.getElementById("systolic").value;
@@ -7,6 +28,18 @@ function saveEntry() {
     var pulse = document.getElementById("pulse").value;
     var hand = document.getElementById("hand").value;
     var remarks = document.getElementById("remarks").value;
+
+    // Check if all mandatory fields are filled
+    if (!time || !systolic || !diastolic || !pulse || !hand) {
+        alert("Please fill in all mandatory fields.");
+        return;
+    }
+
+    // Check if systolic, diastolic, and pulse are integers
+    if (!Number.isInteger(Number(systolic)) || !Number.isInteger(Number(diastolic)) || !Number.isInteger(Number(pulse))) {
+        alert("No decimals values allowed in Systolic, diastolic, and pulse fields.");
+        return;
+    }
 
     var entry = {
         time: time,
@@ -24,6 +57,7 @@ function saveEntry() {
     displayEntries();
     document.getElementById("bpForm").reset();
 }
+
 
 function displayEntries() {
     var entries = JSON.parse(localStorage.getItem("entries")) || [];
