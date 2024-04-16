@@ -1,0 +1,43 @@
+/* styles.css */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+}
+
+/* Print Styles */
+@media print {
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border: 1px solid #000; /* Change border color for printing */
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+}
+
+.edit-icon, .delete-icon, .check-button {
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+.edit-icon:hover, .delete-icon:hover, .check-button:hover {
+    color: #333;
+}
+
+.edit-button, .check-button {
+    display: none;
+}
