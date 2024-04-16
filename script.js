@@ -50,31 +50,27 @@ function saveEntry() {
     };
 
     var entries = JSON.parse(localStorage.getItem("entries")) || [];
-    entries.push(entry);
+    entries.unshift(entry); // Add the new entry to the beginning of the array
     localStorage.setItem("entries", JSON.stringify(entries));
 
     displayEntries();
     document.getElementById("bpForm").reset();
 }
 
+
 function displayEntries() {
     var entries = JSON.parse(localStorage.getItem("entries")) || [];
+    
+    // Sort entries based on the time property (assuming time is in ISO format)
+    entries.sort((a, b) => new Date(b.time) - new Date(a.time));
+
     var tableBody = document.getElementById("entryBody");
     tableBody.innerHTML = "";
 
-    var options = {
-        year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric'
-    };
-
     entries.forEach(function(entry, index) {
-        var formattedTime = new Date(entry.time).toLocaleString(undefined, options);
         var row = document.createElement("tr");
         row.innerHTML = `
-            <td>${formattedTime}</td>
+            <td>${formatDateTime(entry.time)}</td>
             <td>${entry.systolic}</td>
             <td>${entry.diastolic}</td>
             <td>${entry.pulse}</td>
@@ -88,6 +84,17 @@ function displayEntries() {
         `;
         tableBody.appendChild(row);
     });
+}
+
+// Function to format date time (assuming time is in ISO format)
+function formatDateTime(dateTime) {
+    var date = new Date(dateTime);
+    var year = date.getFullYear();
+    var month = (date.getMonth() + 1).toString().padStart(2, '0');
+    var day = date.getDate().toString().padStart(2, '0');
+    var hours = date.getHours().toString().padStart(2, '0');
+    var minutes = date.getMinutes().toString().padStart(2, '0');
+    return `${year}-${month}-${day} ${hours}:${minutes}`;
 }
 
 
