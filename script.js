@@ -29,7 +29,7 @@ function saveEntry() {
     var remarks = document.getElementById("remarks").value;
 
     // Check if all mandatory fields are filled
-    if (!time || !systolic || !diastolic || !pulse || !hand) {
+    if (!time || !systolic || !diastolic || !hand) {
         alert("Please fill in all mandatory fields.");
         return;
     }

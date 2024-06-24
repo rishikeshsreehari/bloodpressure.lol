@@ -1,61 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blood Pressure Tracker</title>
-<link rel="stylesheet" href="styles.css">
-<script src="script.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Pressure Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
-<h1>Blood Pressure Tracker</h1>
-<form id="bpForm">
-
-    <label for="time">Time:</label>
-    <input type="datetime-local" id="time" name="time" required><br><br>
-
-    
-    <label for="systolic">Systolic (mm Hg):</label>
-    <input type="number" id="systolic" name="systolic" placeholder="119" step="1" min="0" required><br><br>
-    
-    <label for="diastolic">Diastolic (mm Hg):</label>
-    <input type="number" id="diastolic" name="diastolic" placeholder="79" step="1" min="0" required><br><br>
-    
-    <label for="pulse">Pulse (bpm):</label>
-    <input type="number" id="pulse" name="pulse" placeholder="60" step="1" min="0" required><br><br>
-    
-    <label for="hand">Hand (L/R):</label>
-    <select id="hand" name="hand" required>
-        <option value="">Select hand</option>
-        <option value="L">Left</option>
-        <option value="R">Right</option>
-    </select><br><br>
-    
-    <label for="remarks">Remarks:</label><br>
-    <textarea id="remarks" name="remarks" maxlength="100"></textarea><br><br>
-    
-    <button type="button" onclick="saveEntry()">Save Entry</button>
-    <button type="button" onclick="exportCSV()">Export CSV</button>
-    <button type="button" onclick="printTable()">Print Table</button>
-</form>
-
-<h2>Entries</h2>
-<table id="entryTable">
-    <thead>
-        <tr>
-            <th>Time</th>
-            <th>Systolic (mm Hg)</th>
-            <th>Diastolic (mm Hg)</th>
-            <th>Pulse (bpm)</th>
-            <th>Hand (L/R)</th>
-            <th>Remarks</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody id="entryBody">
-    </tbody>
-</table>
-
+    <div class="container">
+        <header>
+            <nav>
+                <h1>Blood Pressure Tracker</h1>
+            </nav>
+        </header>
+        <main>
+            <section class="landing">
+                <h2>Welcome to Your Blood Pressure Tracker</h2>
+                <p>Track your blood pressure effortlessly and stay healthy.</p>
+            </section>
+            <section class="form-section">
+                <form id="bpForm">
+                    <h3>Log Your Blood Pressure</h3>
+                    <label for="time">Time:</label>
+                    <input type="datetime-local" id="time" name="time" required><br><br>
+                    <label for="systolic">Systolic (mm Hg):</label>
+                    <input type="number" id="systolic" name="systolic" placeholder="119" step="1" min="0" required><br><br>
+                    <label for="diastolic">Diastolic (mm Hg):</label>
+                    <input type="number" id="diastolic" name="diastolic" placeholder="79" step="1" min="0" required><br><br>
+                    <label for="pulse">Pulse (bpm):</label>
+                    <input type="number" id="pulse" name="pulse" placeholder="60" step="1" min="0" required><br><br>
+                    <label for="hand">Hand (L/R):</label>
+                    <select id="hand" name="hand" required>
+                        <option value="">Select hand</option>
+                        <option value="L">Left</option>
+                        <option value="R">Right</option>
+                    </select><br><br>
+                    <label for="remarks">Remarks:</label><br>
+                    <textarea id="remarks" name="remarks" maxlength="100"></textarea><br><br>
+                    <button type="button" onclick="saveEntry()">Save Entry</button>
+                </form>
+            </section>
+            <section class="entries-section">
+                <h2>Entries</h2>
+                <div class="table-controls">
+                    <button type="button" onclick="exportCSV()">Export CSV</button>
+                    <button type="button" onclick="printTable()">Print Table</button>
+                </div>
+                <table id="entryTable">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Systolic (mm Hg)</th>
+                            <th>Diastolic (mm Hg)</th>
+                            <th>Pulse (bpm)</th>
+                            <th>Hand (L/R)</th>
+                            <th>Remarks</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="entryBody"></tbody>
+                </table>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2024 Blood Pressure Tracker. All rights reserved.</p>
+        </footer>
+    </div>
 </body>
 </html>
